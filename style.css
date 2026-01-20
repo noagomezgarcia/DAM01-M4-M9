@@ -1,0 +1,247 @@
+/* --- VARIABLES Y CONFIGURACIÓN BASE --- */
+:root {
+    --fondo: #060607;
+    --azul-primario: #2ea8ff;
+    --morado-accent: #8a63e5;
+    --texto-claro: #e9eef3;
+    --texto-gris: #aab3bb;
+    --borde-sutil: rgba(255, 255, 255, 0.1);
+    --fondo-card: linear-gradient(180deg, rgba(20, 22, 26, 0.95), rgba(10, 12, 15, 0.98));
+    --gradiente-texto: linear-gradient(90deg, #5fc2f0, #556efc);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--fondo);
+    color: var(--texto-claro);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+}
+
+/* --- LAYOUT GENERAL --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- HEADER --- */
+.main-header {
+    background: radial-gradient(circle at top, rgba(46, 168, 255, 0.1) 0%, rgba(0,0,0,0) 50%);
+    padding: 80px 0 60px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--borde-sutil);
+    margin-bottom: 50px;
+}
+
+.subtitulo-top {
+    display: inline-block;
+    color: var(--azul-primario);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.main-header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.texto-gradiente {
+    background: var(--gradiente-texto);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.main-header h2 {
+    font-size: 1.2rem;
+    color: var(--texto-gris);
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.autor-badge {
+    background: rgba(255,255,255,0.05);
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    border: 1px solid var(--borde-sutil);
+}
+
+/* --- GRID DE TEMAS --- */
+.temario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    padding-bottom: 60px;
+}
+
+/* --- CARD (ESTILO NEÓN) --- */
+.card-tema {
+    background: var(--fondo-card);
+    border: 1px solid var(--borde-sutil);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-tema:hover {
+    transform: translateY(-8px);
+    border-color: rgba(46, 168, 255, 0.3);
+    box-shadow: 0 15px 40px rgba(46, 168, 255, 0.1);
+}
+
+/* Imagen y Tag */
+.card-image {
+    position: relative;
+    height: 200px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--azul-primario);
+    border: 1px solid var(--azul-primario);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px rgba(46, 168, 255, 0.2);
+}
+
+.tag.bloque-m09 {
+    color: var(--morado-accent);
+    border-color: var(--morado-accent);
+    box-shadow: 0 0 10px rgba(138, 99, 229, 0.2);
+}
+
+/* Cuerpo de la card */
+.card-body {
+    padding: 25px;
+    flex: 1; /* Esto hace que el footer se empuje hacia abajo */
+}
+
+.card-body h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.card-body h4 {
+    font-size: 0.95rem;
+    color: var(--azul-primario);
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.card-body p {
+    font-size: 0.9rem;
+    color: var(--texto-gris);
+    margin-bottom: 20px;
+}
+
+/* Lista enlaces */
+.lista-ejercicios {
+    list-style: none;
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.lista-ejercicios li {
+    margin-bottom: 8px;
+}
+.lista-ejercicios li:last-child { margin-bottom: 0; }
+
+.lista-ejercicios a {
+    text-decoration: none;
+    color: var(--texto-claro);
+    font-size: 0.9rem;
+    transition: color 0.3s;
+    display: block;
+}
+
+.lista-ejercicios a:hover {
+    color: var(--azul-primario);
+    padding-left: 5px;
+}
+
+.lista-ejercicios i {
+    font-size: 0.7rem;
+    margin-right: 8px;
+    color: var(--texto-gris);
+}
+
+/* Footer de la card */
+.card-footer {
+    padding: 20px 25px;
+    border-top: 1px solid var(--borde-sutil);
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.btn-link {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 0.85rem;
+    padding: 8px 0;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-link:hover {
+    background: var(--azul-primario);
+    box-shadow: 0 0 15px rgba(46, 168, 255, 0.4);
+}
+
+/* --- FOOTER PRINCIPAL --- */
+.main-footer {
+    background-color: rgba(0,0,0,0.3);
+    border-top: 1px solid var(--borde-sutil);
+    padding: 40px 0;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--texto-gris);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.contacto h4 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.licencia i {
+    font-size: 1.2rem;
+    margin: 0 2px;
+}
