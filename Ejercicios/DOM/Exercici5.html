@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 5 - Tablero de Ajedrez</title>
+    <style>
+        #tablero {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+            width: 400px;
+            border: 5px solid #333;
+            margin-top: 20px;
+        }
+        .celda {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .negra { background-color: #769656; color: #eeeed2; }
+        .blanca { background-color: #eeeed2; color: #769656; }
+    </style>
+</head>
+<body>
+<h1>Ejercicio 5: Tablero de ajedrez</h1>
+<div id="tablero"></div>
+
+<script>
+    const tablero = document.getElementById('tablero');
+
+    for (let fila = 0; fila < 8; fila++) {
+        for (let col = 0; col < 8; col++) {
+
+            const celda = document.createElement('div');
+            celda.className = 'celda';
+
+            //Determinamos el color de la celda
+            //(fila + col) % 2 === 0
+            if ((fila + col) % 2 === 0) {
+                celda.classList.add('blanca');
+            } else {
+                celda.classList.add('negra');
+            }
+
+            //Lógica de las fichas (X y O)
+            //Solo ponemos fichas en las celdas NEGRAS (donde fila+col es impar)
+            if ((fila + col) % 2 !== 0) {
+                if (fila < 3) {
+                    celda.textContent = 'O'; //Fichas superiores
+                } else if (fila > 4) {
+                    celda.textContent = 'X'; //Fichas inferiores
+                }
+            }
+
+            tablero.appendChild(celda);
+        }
+    }
+</script>
+</body>
+</html>

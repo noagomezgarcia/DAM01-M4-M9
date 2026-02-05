@@ -1,0 +1,142 @@
+/* Configuración General */
+:root {
+    --azul-primario: #1a73e8;
+    --azul-oscuro: #0d47a1;
+    --azul-claro: #e3f2fd;
+    --gris-fondo: #f8f9fa;
+    --texto: #333;
+    --blanco: #ffffff;
+    --sombra: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--gris-fondo);
+    color: var(--texto);
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contenedor de Productos (Section) */
+#contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Tarjeta de Producto (Article) [cite: 13, 18] */
+.producto-card {
+    background: var(--blanco);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--sombra);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(26, 115, 232, 0.2);
+}
+
+/* Imagen del Producto */
+.producto-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Títulos y Textos [cite: 51, 52] */
+.producto-card h3 {
+    font-size: 1.2rem;
+    color: var(--azul-oscuro);
+    margin: 10px 0;
+    text-transform: uppercase;
+}
+
+.producto-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    height: 3.5rem; /* Mantiene alineación */
+    overflow: hidden;
+}
+
+.precio {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--azul-primario);
+    margin: 15px 0;
+}
+
+/* Selector de Tallas [cite: 19, 59] */
+.selector-tallas {
+    margin-bottom: 20px;
+}
+
+.selector-tallas span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #888;
+}
+
+.selector-tallas button {
+    background: var(--blanco);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.selector-tallas button:hover {
+    border-color: var(--azul-primario);
+    color: var(--azul-primario);
+}
+
+/* Talla seleccionada dinámicamente */
+.selector-tallas button.seleccionada {
+    background-color: var(--azul-primario);
+    color: var(--blanco);
+    border-color: var(--azul-primario);
+}
+
+/* Botón Añadir al Carrito [cite: 22, 76] */
+.producto-card > button {
+    background-color: var(--azul-primario);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.producto-card > button:hover {
+    background-color: var(--azul-oscuro);
+}
+
+/* Etiquetas (Tags) como "Nuevo" o "Retro" [cite: 50, 54] */
+.tag {
+    display: inline-block;
+    background: #e1f5fe;
+    color: #039be5;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}

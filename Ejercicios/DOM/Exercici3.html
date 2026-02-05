@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 - Teclado númerico</title>
+</head>
+<body>
+<h1 id="titulo">Ejercicio 1 - Teclado númerico</h1>
+<div id="contenedor">
+</div>
+
+<script>
+    //Selección del contenedor principal
+    const contenedor = document.getElementById('contenedor');
+
+    //Creamos un elemento <style> para definir la clase de las teclas
+    //Esto nos permite separar el diseño de la lógica sin tocar el archivo CSS
+    const style = document.createElement('style');
+    style.innerHTML = `
+    #contenedor {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        gap: 10px;
+        margin-top: 20px;
+    }
+    .tecla {
+        width: 100px;
+        height: 100px;
+        background-color: #008080; /* Color teal del ejemplo */
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        font-family: sans-serif;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background 0.3s;
+    }
+    .tecla:hover {
+        background-color: #005f5f;
+    }
+`;
+    document.head.appendChild(style);
+
+    //Lógica para crear el teclado
+    for (let i = 1; i <= 9; i++) {
+        //Creamos el elemento
+        const tecla = document.createElement('div');
+
+        //Añadimos la clase para el estilo
+        tecla.className = 'tecla';
+
+        //Asignamos el número
+        tecla.textContent = i;
+
+        //Agregamos el elemento al contenedor
+        contenedor.appendChild(tecla);
+    }</script>
+</body>
+</html>

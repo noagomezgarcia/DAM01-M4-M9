@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intervalos</title>
+    <style>
+        body {
+            transition: background-color 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+        }
+        .panel {
+            background: rgba(44, 82, 204, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+
+    <div class="panel">
+        <h1 id="titulo">Timmers</h1>
+        <button id="btnVentanas">Activar ventanas</button>
+        <p>El fondo cambia cada 2s</p>
+    </div>
+
+    <script>
+
+        function cambiarFondo(color1, color2) {
+            const actual = document.body.style.backgroundColor;
+            const nuevoColor = (actual === color1) ? color2 : color1;
+            
+            document.body.style.backgroundColor = nuevoColor;
+            //Ajustamos el color del texto para que sea legible
+            document.getElementById('titulo').style.color = (nuevoColor === 'black') ? 'white' : 'black';
+        }
+
+        //cambio cada 2 segundos pasándole los parámetros
+        const idIntervalColor = setInterval(cambiarFondo, 2000, 'black', 'white');
+
+
+
+        let contadorVentanas = 0;
+        const limiteVentanas = 3; //evita que se descontrole
+
+        function abrirNuevaVentana(url) {
+            contadorVentanas++;
+            console.log(`Abriendo ventana nº: ${contadorVentanas}`);
+            
+            window.open(url, '_blank', 'width=400,height=400');
+
+            if (contadorVentanas >= limiteVentanas) {
+                clearInterval(idIntervalVentanas);
+                alert('Se ha alcanzado el límite de ventanas programadas.');
+            }
+        }
+
+        //evento para iniciar el intervalo
+        let idIntervalVentanas;
+        document.getElementById('btnVentanas').onclick = () => {
+            alert('Iniciando secuencia: 1 ventana cada 5 segundos.');
+            
+            //Guardamos el ID para poder pararlo después con clearInterval
+            idIntervalVentanas = setInterval(abrirNuevaVentana, 5000, 'https://www.google.com');
+        };
+    </script>
+</body>
+</html>

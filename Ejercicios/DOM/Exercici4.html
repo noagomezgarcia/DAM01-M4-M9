@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3 - Teclado Alfabético</title>
+</head>
+<body>
+<h1>Ejercicio 3 - Teclado Alfabético</h1>
+<div id="contenedor"></div>
+
+<script>
+    const contenedor = document.getElementById('contenedor');
+    
+    //Definimos estilos base, y colores específicos para vocales y consonantes
+    const style = document.createElement('style');
+    style.innerHTML = `
+            #contenedor {
+                display: flex;
+                flex-wrap: wrap; /* Permite que las teclas bajen si no caben */
+                gap: 5px;
+                max-width: 800px; /* Limitamos el ancho para que parezca un teclado */
+            }
+            .tecla {
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                font-family: sans-serif;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: transform 0.1s;
+            }
+            .tecla:active { transform: scale(0.95); }
+            
+            /* Clases para los colores específicos */
+            .vocal { background-color: #008000; /* Verde */ }
+            .consonante { background-color: #ff8c00; /* Naranja */ }
+        `;
+    document.head.appendChild(style);
+
+    //Función para saber si es vocal
+    function esVocal(letra) {
+        //Comprobamos si la letra está incluida en este string
+        return "AEIOU".includes(letra);
+    }
+
+    //Bucle usando código ASCII
+    for (let i = 65; i <= 90; i++) {
+
+        //Creamos la letra desde el código ASCII
+        let letra = String.fromCharCode(i);
+
+        //Creamos el elemento div
+        let tecla = document.createElement('div');
+        tecla.textContent = letra;
+        tecla.classList.add('tecla'); //Añadimos estilo base
+
+        //Condicional: ¿Es vocal o consonante?
+        if (esVocal(letra)) {
+            tecla.classList.add('vocal');
+        } else {
+            tecla.classList.add('consonante');
+        }
+
+        //Lo añadimos al DOM
+        contenedor.appendChild(tecla);
+    }
+</script>
+</body>
+</html>
