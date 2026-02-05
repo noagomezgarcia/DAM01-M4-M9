@@ -138,5 +138,18 @@ function crearSelectorTallas(tallas) {
     return contenedorTallas;
 }
 
+//Manejar el carrito
+function agregarAlCarrito(producto) {
+    const camisetaEscogida = {
+        id: producto.id,
+        nombre: producto.nombre,
+        precio: producto.precioBase
+    };
+
+    camisetasSeleccionadas.push(camisetaEscogida);
+    console.log("Producto añadido:", camisetaEscogida);
+    console.log("Carrito actual:", camisetasSeleccionadas);
+}
+
 //Que se ejecute al cargar la ventana 
 window.onload = init;
