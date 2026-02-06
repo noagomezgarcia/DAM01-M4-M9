@@ -140,3 +140,36 @@ body {
     text-transform: uppercase;
     margin-bottom: 10px;
 }
+
+/* Añade esto al final de style.css */
+
+.selector-colores {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.selector-colores span {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #888;
+    margin-right: 5px;
+}
+
+.boton-color {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+/* Estado seleccionado para el color */
+.boton-color.seleccionado {
+    border: 2px solid var(--azul-primario);
+    transform: scale(1.2); /* Crece un poco al seleccionarlo */
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}

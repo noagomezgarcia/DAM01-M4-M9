@@ -98,14 +98,17 @@ function crearArticulo(producto) {
     //Selector de tallas
     const selectorTallas = crearSelectorTallas(producto.tallas);
 
+    //Selector de color
+    const selectorColores = crearSelectorColores(producto, imagen);
+
     //Botón de añadir al carrito 
     const botonCarrito = document.createElement("button");
     botonCarrito.textContent = "AÑADIR AL CARRITO";
     botonCarrito.addEventListener("click", () => {
-        agregarAlCarrito(producto);
+        agregarAlCarrito(producto, articulo);
     });
  
-    articulo.append(imagen, nombre, descripcion, precio, selectorTallas, botonCarrito);
+    articulo.append(imagen, nombre, descripcion, precio, selectorTallas, selectorColores, botonCarrito);
     
     return articulo;
 }
@@ -139,16 +142,86 @@ function crearSelectorTallas(tallas) {
 }
 
 //Manejar el carrito
-function agregarAlCarrito(producto) {
+function agregarAlCarrito(producto, articulo) {
+    //Buscar la talla seleccionada
+    const botonTalla = articulo.querySelector(".selector-tallas .seleccionada");
+    const talla = botonTalla ? botonTalla.textContent : null;
+
+    //Buscar el color seleccionado usando el dataset
+    const color = articulo.querySelector(".selector-colores").dataset.colorSeleccionado;
+
+    //Validación
+    if (!talla) {
+        alert("Por favor, selecciona una talla antes de añadir.");
+        return;
+    }
+
+    //Crear el objeto final
     const camisetaEscogida = {
         id: producto.id,
         nombre: producto.nombre,
-        precio: producto.precioBase
+        precio: producto.precioBase,
+        talla: talla,
+        color: color
     };
 
     camisetasSeleccionadas.push(camisetaEscogida);
-    console.log("Producto añadido:", camisetaEscogida);
-    console.log("Carrito actual:", camisetasSeleccionadas);
+    console.log("Añadido:", camisetaEscogida);
+}
+
+//Función para crear los botones de los colores de las camisetas
+function crearSelectorColores(producto, imagenProducto) {
+    const contenedorColores = document.createElement("div");
+    contenedorColores.classList.add("selector-colores");
+
+    const etiqueta = document.createElement("span");
+    etiqueta.textContent = "Color: ";
+    contenedorColores.appendChild(etiqueta);
+
+    //Mapa para cambiar nombres de texto a colores de CSS
+    const mapaColores = {
+        "blanco": "#FFFFFF",
+        "negro": "#000000",
+        "mostaza": "#E1AD01",
+        "gris": "#808080",
+        "azul": "#1a73e8"
+    };
+
+    producto.colores.forEach((color, index) => {
+        const btnColor = document.createElement("button");
+        btnColor.type = "button";
+        btnColor.classList.add("boton-color");
+        btnColor.title = color; //Muestra el nombre al pasar el ratón
+
+        //Asignamos el color de fondo usando el mapa o nombre
+        btnColor.style.backgroundColor = mapaColores[color] || color;
+
+        //Seleccionar el primero por defecto
+        if (index === 0) btnColor.classList.add("seleccionado");
+
+        btnColor.addEventListener("click", (e) => {
+            //Gestión visual
+            const hermanos = contenedorColores.querySelectorAll("button");
+            hermanos.forEach(btn => btn.classList.remove("seleccionado"));
+            btnColor.classList.add("seleccionado");
+
+            //Buscamos la ruta en el objeto imagenes
+            const nuevaImagen = producto.imagenes[color];
+            if (nuevaImagen) {
+                imagenProducto.src = nuevaImagen;
+            }
+
+            //Guardar el dato para el carrito con dataset
+            contenedorColores.dataset.colorSeleccionado = color;
+        });
+
+        contenedorColores.appendChild(btnColor);
+    });
+
+    //Guardamos el color por defecto en el contenedor
+    contenedorColores.dataset.colorSeleccionado = producto.colores[0];
+
+    return contenedorColores;
 }
 
 //Que se ejecute al cargar la ventana 
